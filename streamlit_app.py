@@ -20,6 +20,9 @@ if cookie:
   st.write("FADA/d")
   st.write(df.head(20))
   df.to_csv('dane.txt')
+  with pd.ExcelWriter(f'{str(datetime.datetime.now())[0:4]}.xlsx', engine='openpyxl') as writer:  
+    
+    df.to_excel(writer, sheet_name='oferty')
 
 # # Load data
 # df = pd.read_csv('data/movies_genres_summary.csv')

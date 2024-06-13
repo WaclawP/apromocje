@@ -4,8 +4,8 @@ import pandas as pd
 import altair as alt
 
 # Page title
-st.set_page_config(page_title='Skuteczność Promocji', page_icon='📊')
-st.title('📊 Interactive Data Explorer')
+st.set_page_config(page_title='Skuteczność Promocji Allegro', page_icon='📊')
+st.title('📊 Skuteczność Promocji')
 
 with st.expander('About this app'):
   st.markdown('**What can this app do?**')

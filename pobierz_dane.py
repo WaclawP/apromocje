@@ -100,6 +100,7 @@ df.head()
 
 # In[15]:
 
+df.to_csv('dane.txt')
 
 with pd.ExcelWriter(f'{str(datetime.datetime.now())[0:4]}.xlsx', engine='openpyxl') as writer:  
     

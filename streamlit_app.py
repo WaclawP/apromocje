@@ -2,7 +2,11 @@ import streamlit as st
 import numpy as np
 import pandas as pd
 import altair as alt
+
 import pobierz_dane as allegro
+import push_sql
+
+
 # Page title
 st.set_page_config(page_title='Skuteczność Promocji Allegro', page_icon='📊')
 st.title('📊 Skuteczność Promocji')
@@ -13,16 +17,15 @@ with st.expander('About this app'):
   st.markdown('**How to use the app?**')
   st.warning('To engage with the app, 1. Select genres of your interest in the drop-down selection box and then 2. Select the year duration from the slider widget. As a result, this should generate an updated editable DataFrame and line plot.')
   
-st.subheader('Which Movie Genre performs ($) best at the box office?')
+st.subheader('Głodny sukcesów na allegro?')
 cookie = st.text_input("Podaj QXL:")
+
 if cookie:
   df = allegro.api_call(cookie)  
-  st.write("FADA/d")
-  st.write(df.head(20))
-  df.to_csv('dane.txt')
-  with pd.ExcelWriter(f'{str(datetime.datetime.now())[0:4]}.xlsx', engine='openpyxl') as writer:  
-    
-    df.to_excel(writer, sheet_name='oferty')
+  st.success('dane pobrane z allegro')
+  st.write(df)
+  push_sql.push(df, 'auto24')
+  
 
 # # Load data
 # df = pd.read_csv('data/movies_genres_summary.csv')

@@ -1,6 +1,6 @@
 import pandas as pd
 import sqlalchemy
-from sqlalchemy import create_engine, text
+from sqlalchemy import Table, Column, Integer, String, MetaData, DateTime, create_engine
 
 TABLE_NAME = "auto24"
 
@@ -12,21 +12,18 @@ db_name = "serwer274744_streamlit"
 
 # Utworzenie połączenia za pomocą SQLAlchemy
 engine = create_engine(f"mysql+pymysql://{db_user}:{db_password}@{db_host}/{db_name}", echo=True)
+metadata = MetaData()
 print(engine)
 
 #create table
-sql_command = f"""CREATE TABLE IF NOT EXISTS {TABLE_NAME} (
-    row_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    id TEXT,
-    visit SMALLINT UNSIGNED,
-    sold SMALLINT UNSIGNED,
-    update DATE,
-    data DATE)"""
-with engine.connect() as connection:
-    result = connection.execute(text(sql_command))
-
-
-engine.execute(sql_command)
+table = Table(TABLE_NAME, metadata,
+    Column('row_id', Integer, primary_key=True, autoincrement=True),
+    Column('id', String(255)),
+    Column('visit', Integer, unsigned=True),
+    Column('sold', Integer, unsigned=True),
+    Column('update', DateTime),
+    Column('data', DateTime))
+metadata.create_all(engine)
 
 
 #Send to database

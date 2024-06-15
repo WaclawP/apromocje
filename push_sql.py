@@ -1,6 +1,6 @@
 import pandas as pd
 import sqlalchemy
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, text
 
 TABLE_NAME = "auto24"
 
@@ -22,6 +22,9 @@ sql_command = f"""CREATE TABLE IF NOT EXISTS {TABLE_NAME} (
     sold SMALLINT UNSIGNED,
     update DATE,
     data DATE)"""
+with engine.connect() as connection:
+    result = connection.execute(text(sql_command))
+
 
 engine.execute(sql_command)
 

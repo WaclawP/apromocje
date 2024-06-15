@@ -1,4 +1,3 @@
-
 import requests
 import json
 import datetime
@@ -49,12 +48,6 @@ def api_call(raf_cookie):
     except:
         data = data[1:]
 
-
-
-
-    # In[2]:
-
-
     data_export = {}
     data_export_list = []
 
@@ -70,24 +63,8 @@ def api_call(raf_cookie):
             
             data_export_list.append(a)
             data_export[offer['id']] = a     
-    with open(r"D:\DocumentsFiles\Biznes ALE-ADSY\Allegro Teraz\AUTO_SHOP24\Nowe kampanie 14.05.2024\data.txt", "w") as file:
-        file.write(str(data_export_list))
-
-
-    # In[3]:
-
-
-
-    # In[7]:
-
-
-    print(data_export_list[2])
-
-
-    # In[10]:
-
 
     df = pd.DataFrame(data_export_list)
-    df.head()
-
+    df.columns = ['id', 'visit', 'sold', 'update', 'date']
+    
     return df

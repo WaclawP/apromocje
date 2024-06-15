@@ -1,6 +1,6 @@
 import pandas as pd
 import sqlalchemy
-from sqlalchemy import Table, Column, Integer, String, MetaData, DateTime, create_engine
+from sqlalchemy import Table, Column, Integer, String, MetaData, DateTime, Date, create_engine
 
 TABLE_NAME = "auto24"
 

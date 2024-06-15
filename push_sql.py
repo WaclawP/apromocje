@@ -19,10 +19,10 @@ print(engine)
 table = Table(TABLE_NAME, metadata,
     Column('row_id', Integer, primary_key=True, autoincrement=True),
     Column('id', String(255)),
-    Column('visit', Integer, unsigned=True),
-    Column('sold', Integer, unsigned=True),
+    Column('visit', Integer),
+    Column('sold', Integer),
     Column('update', DateTime),
-    Column('data', DateTime))
+    Column('data', Date))
 metadata.create_all(engine)
 
 

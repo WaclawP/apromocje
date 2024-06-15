@@ -34,4 +34,3 @@ def push(data_frame, table_name):
         index = False,
         if_exists = 'append' #append,replace,fail
         )
-push(df, TABLE_NAME)

@@ -14,17 +14,16 @@ db_name = "serwer274744_streamlit"
 engine = create_engine(f"mysql+pymysql://{db_user}:{db_password}@{db_host}/{db_name}", echo=True)
 print(engine)
 
-#READ SQL
-# df = pd.read_sql_table('dane', engine, columns=['id', 'visit'])
-df = pd.read_sql_query(
-    f"""CREATE TABLE IF NOT EXISTS {TABLE_NAME} (
-    row_id INT PRIMARY KEY AUTO_INCREMENT,
-    id VARCHAR(50),
+#create table
+sql_command = f"""CREATE TABLE IF NOT EXISTS {TABLE_NAME} (
+    row_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id TEXT,
     visit SMALLINT UNSIGNED,
     sold SMALLINT UNSIGNED,
     update DATE,
     data DATE)"""
-    , engine)
+
+engine.execute(sql_command)
 
 
 #Send to database
